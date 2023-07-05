@@ -1,24 +1,55 @@
-import './style.css'
-import typescriptLogo from './typescript.svg'
-import viteLogo from '/vite.svg'
-import { setupCounter } from './counter.ts'
+import './style.css';
+import typescriptLogo from './typescript.svg';
+import viteLogo from '/vite.svg';
+import Home from "./views/Home.ts"
+import Help from "./views/Help.ts"
+import NotFound from "./views/NotFound.ts"
+/* import { setupCounter } from './counter.ts' */
 
-document.querySelector<HTMLDivElement>('#app')!.innerHTML = `
-  <div>
-    <a href="https://vitejs.dev" target="_blank">
-      <img src="${viteLogo}" class="logo" alt="Vite logo" />
-    </a>
-    <a href="https://www.typescriptlang.org/" target="_blank">
-      <img src="${typescriptLogo}" class="logo vanilla" alt="TypeScript logo" />
-    </a>
-    <h1>Vite + TypeScript</h1>
-    <div class="card">
-      <button id="counter" type="button"></button>
-    </div>
-    <p class="read-the-docs">
-      Click on the Vite and TypeScript logos to learn more
-    </p>
-  </div>
-`
+const navigateTo = url => {
+  history.pushState(null, null, url);
+  router();
+};
 
-setupCounter(document.querySelector<HTMLButtonElement>('#counter')!)
+const router = async () => {
+  const routes = [
+    { path: '/404', view: NotFound },
+    { path: '/', view: Home },
+    { path: '/help', view: Help },
+  ];
+
+  const potentialMatches = routes.map(route => {
+    return {
+      route: route,
+      isMatch: location.pathname === route.path
+    };
+  });
+  
+  let match = potentialMatches.find(potentialMatch => potentialMatch.isMatch);
+  
+  if (!match) {
+    match = {
+      route: routes[0],
+      isMatch: true
+    };
+  };
+  
+  const view = new match.route.view();
+
+  document.querySelector<HTMLDivElement>('#app')!.innerHTML = await view.getHtml();
+
+ /*  console.log(match.route.view()); */
+};
+
+window.addEventListener("popstate", router);
+
+document.addEventListener("DOMContentLoaded", () => {
+  document.body.addEventListener("click", element => {
+    if (element.target.matches("[data-link]")) {
+      element.preventDefault();
+      navigateTo(element.target.href);
+    }
+  });
+
+  router();
+});
