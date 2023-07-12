@@ -1,4 +1,5 @@
 import AbstractView from "./AbstractView.ts"
+import template from "./help.html"
 
 export default class extends AbstractView {
   constructor(params: any) {
@@ -7,6 +8,7 @@ export default class extends AbstractView {
   }
 
   getHtml (): any {
+    console.log(template);
     return `
       <h1>Help page</h1> 
     `;
