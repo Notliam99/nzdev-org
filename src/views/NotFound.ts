@@ -8,6 +8,7 @@ export default class extends AbstractView {
 
   getHtml (): any {
     return `
+      <a href="/">home</a>
       <h1>404</h1>
       <p>Notfound</p>
     `;

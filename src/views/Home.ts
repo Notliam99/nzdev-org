@@ -8,13 +8,13 @@ export default class extends AbstractView {
 
   getHtml (): any {
     return `
-      <h1>This is the index of the site.</h1>
+      <h1><a style="color: grey;" href="nzdev.org">NZDEV.ORG</a></h1>
+      <h2>This is the index of the site.</h2>
       <p>
         the center of the hole website lies here.
-        very cool the beast would say mr ...
-        beast
+        <b>very cool!!!</b> Check The About Bellow.
       </p>
-      <a href="/help" data-link>help page</a>
+      <a href="/about" data-link>About (<b>Nz Dev</b>)</a>
     `;
   }
 }
