@@ -19,6 +19,9 @@ jobs:
   docker:
     runs-on: ubuntu-latest
     steps:
+      - name: wow
+        run: echo '${{ github.event.workflow_run.head_commit.message }}'
+    
       - name: BlockFluxCD
         if: github.event.workflow_run.head_commit.message == 'Update from image update automation'
         uses: action-pack/cancel@v1
