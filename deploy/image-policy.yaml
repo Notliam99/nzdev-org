@@ -8,5 +8,14 @@ spec:
   interval: 5m
   secretRef:
     name: homepage-registry
+---
+apiVersion: image.toolkit.fluxcd.io/v1beta2
+kind: ImagePolicy
+metadata:
+  namespace: nzdev-org-homepage
+  name: homepage-image-policy
+spec:
+  imageRepositoryRef:
+    name: homepage-image-repo
   filterTags:
     pattern: ^sha-.*
