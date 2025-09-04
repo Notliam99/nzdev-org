@@ -11,21 +11,11 @@ on:
     branches:
       - 'main'
 
-jobs:
-  check-user:
-    runs-on: ubuntu-latest
-    steps:
-      - name: Check if user is allowed
-        id: check
-        run: |
-          if [ "${GITHUB_ACTOR}" == "fluxcdbot" ]; then
-            echo "User ${GITHUB_ACTOR} is not allowed to trigger this workflow."
-            exit 1
-          else
-            echo "User ${GITHUB_ACTOR} is allowed to trigger this workflow."
-          fi
+concurrency:
+  group: ${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: ${{ !contains(github.actor, 'fluxcdbot')}}
 
-  
+jobs:
   docker:
     runs-on: ubuntu-latest
     needs: check-user
