@@ -8,3 +8,5 @@ spec:
   interval: 5m
   secretRef:
     name: homepage-registry
+  filterTags:
+    pattern: ^sha-.*
