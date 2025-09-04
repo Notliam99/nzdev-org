@@ -26,12 +26,9 @@ jobs:
         id: get_commit_message
         run: |
           echo "COMMIT_MESSAGE_HEADER=$(git log -1 --pretty=%B | head -n 1)" >> $GITHUB_ENV
-
-      - name: wow
-        run: echo '${{ env.COMMIT_MESSAGE_HEADER }}'
     
       - name: BlockFluxCD
-        if: ${{ env.COMMIT_MESSAGE_HEADER }} == 'Update from image update automation'
+        if: ${{ env.COMMIT_MESSAGE_HEADER }} != 'Update from image update automation'
         uses: action-pack/cancel@v1
 
       - name: TimeTag
