@@ -19,11 +19,17 @@ jobs:
   docker:
     runs-on: ubuntu-latest
     steps:
+      - name: Get commit message header
+        id: get_commit_message
+        run: |
+          COMMIT_MESSAGE_HEADER=$(git log -1 --pretty=%B | head -n 1)
+          echo "COMMIT_MESSAGE_HEADER=${COMMIT_MESSAGE_HEADER}" >> $GITHUB_ENV
+
       - name: wow
-        run: echo '${{ github.event.workflow_run.head_commit.message }}'
+        run: echo '${{ env.COMMIT_MESSAGE_HEADER }}'
     
       - name: BlockFluxCD
-        if: github.event.workflow_run.head_commit.message == 'Update from image update automation'
+        if: ${{ env.COMMIT_MESSAGE_HEADER }} == 'Update from image update automation'
         uses: action-pack/cancel@v1
     
       - name: Checkout
