@@ -12,13 +12,17 @@ on:
       - 'main'
 
 concurrency:
-  group: ${{ github.workflow }}-${{ github.actor }}
-  cancel-in-progress: ${{ github.actor == 'fluxcdbot' }}
+  group: ${{ github.workflow }}-${{ github.ref }
+  cancel-in-progress: true
 
 jobs:
   docker:
     runs-on: ubuntu-latest
     steps:
+      - name: BlockFluxCD
+        if: github.actor == 'fluxcdbot'
+        uses: action-pack/cancel@v1
+    
       - name: Checkout
         uses: actions/checkout@v3
 
