@@ -3,7 +3,7 @@ kind: Deployment
 apiVersion: apps/v1
 metadata:
   name: homepage-deployment
-  namespace: homepage-nzdev-org
+  namespace: nzdev-org-homepage
   labels:
     app: node
 spec:
