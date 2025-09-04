@@ -22,5 +22,5 @@ spec:
     pattern: '^build-(?P<timesamp>.*)$'
     extract: '$timestamp'
   policy:
-    numerical:
+    alphabetical:
       order: asc
