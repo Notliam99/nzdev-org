@@ -19,11 +19,8 @@ jobs:
   docker:
     runs-on: ubuntu-latest
     steps:
-      - name: wow
-        run: echo '${{ github.actor }}'
-    
       - name: BlockFluxCD
-        if: github.actor == 'fluxcdbot'
+        if: github.event.workflow_run.head_commit.message == 'Update from image update automation'
         uses: action-pack/cancel@v1
     
       - name: Checkout
