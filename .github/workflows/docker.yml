@@ -20,7 +20,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: wow
-        run: echo '$GITHUB_ACTOR'
+        run: echo '${{ github.actor }}'
     
       - name: BlockFluxCD
         if: github.actor == 'fluxcdbot'
