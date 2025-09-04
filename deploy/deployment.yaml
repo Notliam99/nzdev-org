@@ -22,9 +22,10 @@ spec:
     spec:
       containers:
       - name: node
-        image: asskit/nzdev-org:main
+        image: asskit/nzdev-org:main # {"$imagepolicy": "homepage-nzdev-org:homepage-image-repo"}
         ports:
         - name: web
           containerPort: 8080
       imagePullSecrets:
       - name: homepage-registry
+
