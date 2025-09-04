@@ -1,0 +1,10 @@
+apiVersion: image.toolkit.fluxcd.io/v1beta2
+kind: ImageRepository
+metadata:
+  namespace: nzdev-org-homepage
+  name: homepage-image-repo
+spec:
+  image: asskit/nzdev-org
+  interval: 5m
+  secretRef:
+    name: homepage-registry
