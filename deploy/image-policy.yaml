@@ -24,3 +24,23 @@ spec:
   policy:
     alphabetical:
       order: asc
+---
+apiVersion: image.toolkit.fluxcd.io/v1beta2
+kind: ImageUpdateAutomation
+metadata:
+  name: nzdev-org-homepage
+  namespace: homepage-image-automation
+spec:
+  interval: 5m
+  sourceRef:
+    kind: GitRepository
+    name: nzdev-org-homepage
+  git:
+    commit:
+      author:
+        email: fluxcdbot@nzdev.org
+        name: fluxcdbot
+    push:
+      branch: main
+  update:
+    path: ./
