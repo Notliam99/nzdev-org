@@ -38,9 +38,8 @@ jobs:
         with:
           images: ${{ secrets.DOCKERHUB_USERNAME }}/nzdev-org
           tags: |
-            type=schedule,prefix=build-,pattern={{date 'YYYYMMDDHHmmss' tz='Pacific/Auckland'}},priority=100
             # branch event
-            type=ref,enable=true,priority=600,prefix=,suffix=,event=branch
+            type=ref,enable=false,priority=600,prefix=,suffix=,event=branch
             # tag event
             type=ref,enable=true,priority=600,prefix=,suffix=,event=tag
             # pull request event
@@ -53,6 +52,6 @@ jobs:
           context: .
           push: ${{ github.event_name != 'pull_request' }}
           tags: |
-            ${{ secrets.DOCKERHUB_USERNAME }}/nzdev-org:build-${{ env.TIME_TAG }}
             ${{ steps.meta.outputs.tags }}
+            ${{ secrets.DOCKERHUB_USERNAME }}/nzdev-org:build-${{ env.TIME_TAG }}
           labels: ${{ steps.meta.outputs.labels }}
