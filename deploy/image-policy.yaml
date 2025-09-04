@@ -7,7 +7,6 @@ spec:
   image: asskit/nzdev-org
   interval: 5m
   secretRef:
-    namespace: nzdev-org-homepage
     name: homepage-registry
 ---
 apiVersion: image.toolkit.fluxcd.io/v1beta2
