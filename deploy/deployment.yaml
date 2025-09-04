@@ -22,7 +22,7 @@ spec:
     spec:
       containers:
       - name: node
-        image: asskit/nzdev-org:main # {"$imagepolicy": "homepage-nzdev-org:homepage-image-policy"}
+        image: asskit/nzdev-org:main # {"$imagepolicy": "nzdev-org-homepage:homepage-image-policy"}
         ports:
         - name: web
           containerPort: 8080
