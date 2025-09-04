@@ -1,0 +1,30 @@
+---
+kind: Deployment
+apiVersion: apps/v1
+metadata:
+  name: homepage-deployment
+  namespace: homepage-nzdev-org
+  labels:
+    app: node
+spec:
+  replicas: 3
+  progressDeadlineSeconds: 600
+  revisionHistoryLimit: 2
+  strategy:
+    type: Recreate
+  selector:
+    matchLabels:
+      app: node
+  template:
+    metadata:
+      labels:
+        app: node
+    spec:
+      containers:
+      - name: node
+        image: asskit/nzdev-org:main
+        ports:
+        - name: web
+          containerPort: 8080
+      imagePullSecrets:
+      - name: homepage-registry
