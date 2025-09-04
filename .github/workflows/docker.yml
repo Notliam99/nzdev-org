@@ -19,6 +19,9 @@ jobs:
   docker:
     runs-on: ubuntu-latest
     steps:
+      - name: Checkout
+        uses: actions/checkout@v3
+      
       - name: Get commit message header
         id: get_commit_message
         run: |
@@ -30,9 +33,6 @@ jobs:
       - name: BlockFluxCD
         if: ${{ env.COMMIT_MESSAGE_HEADER }} == 'Update from image update automation'
         uses: action-pack/cancel@v1
-    
-      - name: Checkout
-        uses: actions/checkout@v3
 
       - name: TimeTag
         run: echo "TIME_TAG=$(date +'%Y%m%d%H%M%S')" >> $GITHUB_ENV
