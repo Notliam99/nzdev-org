@@ -32,7 +32,7 @@ jobs:
         with:
           images: ${{ secrets.DOCKERHUB_USERNAME }}/nzdev-org
           tags: |
-            Build-{{date 'YYYYMMDDHHmmss' tz='Pacific/Auckland'}}
+            type=schedule,prefix=build-,pattern={{date 'YYYYMMDDHHmmss' tz='Pacific/Auckland'}}
             # branch event
             type=ref,enable=true,priority=600,prefix=,suffix=,event=branch
             # tag event

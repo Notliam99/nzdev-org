@@ -18,8 +18,8 @@ spec:
   imageRepositoryRef:
     name: homepage-image-repo
   filterTags:
-    pattern: '^Build-(?P<timesamp>.*)$'
-    extract: '$timestamp' 
+    pattern: '^build-(?P<timesamp>.*)$'
+    extract: '$timestamp'
   policy:
     numerical:
       order: asc
