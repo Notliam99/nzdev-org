@@ -19,6 +19,9 @@ jobs:
   docker:
     runs-on: ubuntu-latest
     steps:
+      - name: wow
+        run: echo '$GITHUB_ACTOR'
+    
       - name: BlockFluxCD
         if: github.actor == 'fluxcdbot'
         uses: action-pack/cancel@v1
