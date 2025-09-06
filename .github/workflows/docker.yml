@@ -7,9 +7,23 @@ on:
       - 'main'
     tags:
       - 'v*'
+    paths:
+      - "**.json"
+      - "**.html"
+      - "Dockerfile"
+      - ".Dockerignore"
+      - "src/**"
+      - "public/**"
   pull_request:
     branches:
       - 'main'
+    paths:
+      - "**.json"
+      - "**.html"
+      - "Dockerfile"
+      - ".Dockerignore"
+      - "src/**"
+      - "public/**"
 
 concurrency:
   group: ${{ github.workflow }}-${{ github.ref }}
