@@ -1,6 +1,5 @@
 kind: Deployment
 apiVersion: apps/v1
-
 metadata:
   name: homepage-deployment
   namespace: nzdev-org-homepage
@@ -9,10 +8,7 @@ metadata:
 spec:
   replicas: 3
   progressDeadlineSeconds: 600
-
   revisionHistoryLimit: 2
-
-
   strategy:
     type: Recreate
   selector:
@@ -25,11 +21,9 @@ spec:
     spec:
       containers:
       - name: node
-        image: asskit/nzdev-org:build-20250907212631 # {"$imagepolicy": "nzdev-org-homepage:homepage-image-policy"}
+        image: asskit/nzdev-org:build-20251008203714 # {"$imagepolicy": "nzdev-org-homepage:homepage-image-policy"}
         ports:
         - name: web
           containerPort: 8080
       imagePullSecrets:
       - name: homepage-registry
-
-
